@@ -94,7 +94,7 @@ const App: React.FC = () => {
 
   const handleDeleteCustomer = (uid: string) => {
     setCustomers((prevCustomers) => prevCustomers.filter((customer) => customer.uid !== uid));
-    handleCloseModal();
+    handleCloseNewModal();
   }
 
   return (
@@ -137,6 +137,7 @@ const App: React.FC = () => {
       {isEditModalVisible && selectedCustomer && (
         <EditCustomerModal
           customerData={selectedCustomer}
+          onDelete={null}
           onClose={handleCloseEditModal}
           onEdit={handleEdit} // Include onEdit here
         />
@@ -152,19 +153,21 @@ const App: React.FC = () => {
             notes: '',
             crd: new Date().toISOString().split('T')[0],
           }}
-          
+          onDelete={null}
           onClose = {handleCloseNewModal}
           onEdit = {handleAddCustomer}
         />
         
       )}
 
-      { isModalVisible && selectedCustomer && (
+      { isNewModalVisible && selectedCustomer && (
         <EditCustomerModal 
           customerData={selectedCustomer}
-          onClose={handleCustomerModal}
+          onClose={() => {
+            return CustomerModal
+          }}
           onEdit={handleEdit}
-          onDelete= {handleDelete}
+          onDelete={null}
         />
       )}
     </div>

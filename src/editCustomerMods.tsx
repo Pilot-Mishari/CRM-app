@@ -4,11 +4,13 @@ import { Customer } from './interface';
 type EditCustomerModalProps = {
   customerData: Customer;
   onClose: () => void;
-  onEdit: (customer: Customer) => void;
+  onEdit: (customer: Customer) => void,
+  onDelete: any
 };
 
-const EditCustomerModal: React.FC<EditCustomerModalProps> = ({ customerData, onClose, onEdit }) => {
+const EditCustomerModal: React.FC<EditCustomerModalProps> = ({ customerData, onClose, onEdit, onDelete }) => {
   const [customer, setCustomer] = useState<Customer>(customerData);
+  console.log(onDelete)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
